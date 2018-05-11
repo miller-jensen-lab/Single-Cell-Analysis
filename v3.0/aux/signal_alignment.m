@@ -126,9 +126,13 @@ while strcmpi(looper,'yes')
             delete(hmsg);
         end
         
+        %This is the previous, less stringent alignment
+%         %Estimate transformation as projective due to PDMS deformation
+%         tform_channels=fitgeotrans(movingPoints_ch,fixedPoints_ch,'projective');
+
+        %New version,estimate transformation as polynomial due to PDMS deformation 
+        tform_channels=fitgeotrans(movingPoints_ch,fixedPoints_ch,'polynomial',2);
         
-        %Estimate transformation as projective due to PDMS deformation
-        tform_channels=fitgeotrans(movingPoints_ch,fixedPoints_ch,'projective');
         %Register the barcode binary align channel image to the Genepix space
         registered_align_barcode=imwarp(barcode,tform_channels,'nearest','OutputView',Rgenepix);
         %Get outline of properly registered channel (outside perimeter using
