@@ -741,7 +741,7 @@ if sum(chosen_channels)==0;
     return
 else
     
-    if ~same(chosen_channels,prev_chosen)
+    if ~isequal(chosen_channels,prev_chosen)
         h=waitbar(0.2,'Updating the RGB image overlay','WindowStyle','modal');
         %Read barcode and use only the new selected channels
         load('Barcode_data.mat');
