@@ -288,8 +288,14 @@ if all(check_wells==num_wells)
     %     normalized_path=[newsave_path, fileappend ' Normalized/'];
     %     mkdir(normalized_path);
     
+    % Write Raw signal before normalization script
+    writetable(Tfinal,[newsave_path fileappend ...
+        ' Raw Signal.csv']);
+    
     writetable(Tfinal_medians,[newsave_path fileappend ...
         ' Raw Signal_medians.csv']);
+
+    
     delete(h)
     clearvars -except Tfinal newsave_path fileappend normalized_path
     
